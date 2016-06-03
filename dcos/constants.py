@@ -18,7 +18,7 @@ DCOS_DEBUG_ENV = 'DCOS_DEBUG'
 """Name of the environment variable to enable DCOS debug messages"""
 
 DCOS_PAGER_COMMAND_ENV = 'PAGER'
-"""Command to use to page long command output (e.g. 'less -R')"""
+"""Command to use to page long command output (e.g. 'less')"""
 
 DCOS_SSL_VERIFY_ENV = 'DCOS_SSL_VERIFY'
 """Whether or not ot verify SSL certs for HTTPS or path to certificate(s)"""

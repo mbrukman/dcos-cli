@@ -163,7 +163,7 @@ def _page(output, pager_command=None):
     output = six.text_type(output)
 
     if pager_command is None:
-        pager_command = 'less -R'
+        pager_command = 'less'
 
     if not sys.stdout.isatty() or util.is_windows_platform():
         print(output)
