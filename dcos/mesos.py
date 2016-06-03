@@ -362,7 +362,7 @@ class Master(object):
         :returns: the task that has `fltr` in its ID
         :param completed: also include completed tasks
         :type completed: bool
-        :rtype: Task
+        :rtype: [Task]
         """
 
         tasks = self.tasks(fltr, completed)
@@ -371,14 +371,7 @@ class Master(object):
             raise DCOSException(
                 'Cannot find a task with ID containing "{}"'.format(fltr))
 
-        elif len(tasks) > 1:
-            msg = [("There are multiple tasks with ID matching [{}]. " +
-                    "Please choose one:").format(fltr)]
-            msg += ["\t{0}".format(t["id"]) for t in tasks]
-            raise DCOSException('\n'.join(msg))
-
-        else:
-            return tasks[0]
+        return tasks
 
     def framework(self, framework_id):
         """Returns a framework by ID

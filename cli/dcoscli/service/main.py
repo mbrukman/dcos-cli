@@ -190,7 +190,13 @@ def _log_task(task_id, follow, lines, file_):
     """
 
     dcos_client = mesos.DCOSClient()
-    task = mesos.get_master(dcos_client).task(task_id)
+    tasks = mesos.get_master(dcos_client).task(task_id)
+    if len(tasks) > 1:
+        msg = [("There are multiple tasks with ID matching [{}]. " +
+                "Please choose one:").format(task_id)]
+        msg += ["\t{0}".format(t["id"]) for t in tasks]
+        raise DCOSException('\n'.join(msg))
+    task = tasks[0]
     mesos_file = mesos.MesosFile(file_, task=task, dcos_client=dcos_client)
     return log.log_files([mesos_file], follow, lines)
 
